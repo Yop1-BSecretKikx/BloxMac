@@ -8,10 +8,7 @@
 
 5) cd ~/Desktop/BloxMac && ./BloxMac.sh
 
-[developed by Bakitox alias Bakititi alias Bakiki alias Bakiroux] its all the same person, just different name.
-
-Name: Bakr
-Dicord Contact : Bakititi
+[developed by Yop1]
 
 
 Futur Update:
