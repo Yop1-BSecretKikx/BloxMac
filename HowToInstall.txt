@@ -1,3 +1,8 @@
+        Cloning in Desktop
+1)open Terminal
+2)cd Desktop
+3) git clone https://github.com/Yop1-BSecretKikx/BloxMac.git
+
 After Cloning the Github project run this commande :
 
 1) cd ~/Desktop/BloxMac && chmod +x ./BloxMac.sh
