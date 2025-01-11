@@ -8,8 +8,8 @@ const Version = " v1.0"
 
 //Full Open Source Project to help MacOS user on roblox to get more fps and enjoy the game ;)
 
-// Created by Bakitox, bakr
-// developed by bakitox, bakr
+// Created by Yop1,
+// developed by Yop1,
 // The future update will be soon, it depends how much user use my app
 // Future update on ./ScriptJS/HowToInstall.txt
 
@@ -43,7 +43,7 @@ function Currentdate () {
 module.exports = Currentdate
 
 const PathClientSetting = "/Applications/Roblox.app/Contents/MacOS/ClientSettings";
-const FuturUpdate = Currentdate()+ "FUTUR UPDATE\n" +" - Swift MacOS app for better view and management \n - Changing the writing background \n - Adding Mouse Cursor \n - API \n - And more \n - [Created by Bakitox]"
+const FuturUpdate = Currentdate()+ "FUTUR UPDATE\n" +" - Swift MacOS app for better view and management \n - Changing the writing background \n - Adding Mouse Cursor \n - API \n - And more \n - [Created by Yop1]"
 rl.question('Select Type of Texture you need (1: Lowpack, 2: Midpack, 3: Highpack) =>', (answer) => {
     if(answer == 1) {
 
