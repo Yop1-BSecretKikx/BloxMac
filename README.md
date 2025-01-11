@@ -4,7 +4,7 @@ TOOL FOR MACOS USER ONLY.
 
 These tools allow you to modify the texture of Roblox games as you wish, for the moment 3 texture packs are finished, in the future many updates will be applied.
 
-Future Update: 
+Take a Look at HowToInstall.txt to run the Script
 
 Future Update:
 - Swift MacOS app for better view and management.
