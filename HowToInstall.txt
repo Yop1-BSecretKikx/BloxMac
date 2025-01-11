@@ -1,0 +1,20 @@
+After Cloning the Github project run this commande :
+
+1) cd ~/Desktop/BloxMac && chmod +x ./BloxMac.sh
+
+2) cd ~/Desktop/BloxMac && ./BloxMac.sh
+
+[developed by Bakitox alias Bakititi alias Bakiki alias Bakiroux] its all the same person, just different name.
+
+Name: Bakr
+Dicord Contact : Bakititi
+
+
+Futur Update:
+ - Swift MacOS app for better view and management 
+ - Changing the writing background 
+ - Adding Mouse Cursor 
+ - API 
+ - And more 
+
+ - [Created by Bakitox]
