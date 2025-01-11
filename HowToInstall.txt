@@ -1,13 +1,12 @@
-        Cloning in Desktop
-1)open Terminal
-2)cd Desktop
+        RUN COMMANDE Below
+
+2) cd Desktop
+
 3) git clone https://github.com/Yop1-BSecretKikx/BloxMac.git
 
-After Cloning the Github project run this commande :
+4) cd ~/Desktop/BloxMac && chmod +x ./BloxMac.sh
 
-1) cd ~/Desktop/BloxMac && chmod +x ./BloxMac.sh
-
-2) cd ~/Desktop/BloxMac && ./BloxMac.sh
+5) cd ~/Desktop/BloxMac && ./BloxMac.sh
 
 [developed by Bakitox alias Bakititi alias Bakiki alias Bakiroux] its all the same person, just different name.
 
