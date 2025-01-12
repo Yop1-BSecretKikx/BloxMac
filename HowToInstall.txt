@@ -1,4 +1,10 @@
-        RUN COMMANDE Below
+
+FOR ALL USER, PLEASE READ THIS
+
+THE SCRIPT IS NOT WORKING YET FOR ALL USER, I NEED TO FIX SOME ISSUE
+-Auto Find Roblox Folder **
+
+RUN COMMANDE Below
 
 1) brew install node
 
