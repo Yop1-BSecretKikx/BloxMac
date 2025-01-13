@@ -5,6 +5,8 @@ MAKE SURE ROBLOX IS IN /Applications of your pc
 
 RUN COMMANDE Below
 
+0) brew install git
+
 1) brew install node
 
 2) cd Desktop
