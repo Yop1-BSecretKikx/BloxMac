@@ -5,17 +5,19 @@ MAKE SURE ROBLOX IS IN /Applications of your pc
 
 RUN COMMANDE Below
 
-0) brew install git
+0) /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-1) brew install node
+1) brew install git
 
-2) cd Desktop
+2) brew install node
 
-3) git clone https://github.com/Yop1-BSecretKikx/BloxMac.git
+3) cd Desktop
 
-4) cd ~/Desktop/BloxMac && chmod +x ./BloxMac.sh
+4) git clone https://github.com/Yop1-BSecretKikx/BloxMac.git
 
-5) cd ~/Desktop/BloxMac && ./BloxMac.sh
+5) cd ~/Desktop/BloxMac && chmod +x ./BloxMac.sh
+
+6) cd ~/Desktop/BloxMac && ./BloxMac.sh
 
 [developed by Yop1]
 
