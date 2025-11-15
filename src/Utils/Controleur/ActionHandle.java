@@ -246,30 +246,6 @@ public class ActionHandle {
         return (true);
     }
 
-    public static Boolean ImportModsIntoRoblox(JPanel CurrentPanel)
-    {
-        //finish 8 nov 4h30
-        JFileChooser FileChooser = new JFileChooser();
-        FileChooser.setDialogTitle("BloxMac File Finder");
-        FileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-        int resultat = FileChooser.showOpenDialog(CurrentPanel);
-
-        if(resultat == JFileChooser.CANCEL_OPTION)
-        {
-            FileChooser.cancelSelection();
-            return (false);
-        }
-        else if(resultat == JFileChooser.APPROVE_OPTION)
-        {
-            File ModsFile = FileChooser.getSelectedFile();
-            
-            //todo End Mods Loader
-            
-        }
-        return (true);
-    }
-
     public static Boolean CreateNewInstance()
     {
         try
@@ -393,6 +369,37 @@ public class ActionHandle {
 
     public static void Notification(String Message) throws IOException
     {
-        
+        //to do
+    }
+
+    public static Boolean LoadMods(JPanel CurrentPannel)
+    {
+        System.out.println("test");
+        JFileChooser ModsFile = new JFileChooser();
+        ModsFile.setDialogTitle("Choose Mod");
+
+        ModsFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int res = ModsFile.showOpenDialog(CurrentPannel);
+
+
+        if(res == ModsFile.CANCEL_OPTION)return (false);
+
+        if(res == ModsFile.APPROVE_OPTION)
+        {
+            //How should it work walk in all sub directory until u find a file when find remember his path us thats path to place it in the good roblox folder
+
+            File GetFileMods = ModsFile.getSelectedFile();
+            String FileNames[] = GetFileMods.list();
+            if(GetFileMods != null)
+            {
+               for(String Fname : FileNames)
+               {
+                    //15nov 23h16 Load Mods Todo
+               }
+            }
+        }
+
+        return (true);
+
     }
 }
