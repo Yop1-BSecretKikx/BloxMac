@@ -56,7 +56,7 @@ public class View {
         SidePannel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         SidePannel.setLayout(null);
 
-        JLabel TitleLabel = new JLabel("<html>BloxMac <br><p>v0.0.1</p></html>");
+        JLabel TitleLabel = new JLabel("<html>BloxMac <br><p>v0.0.2</p></html>");
         TitleLabel.setBounds(60, -10, 150, 90);
         TitleLabel.setForeground(Color.WHITE);
         TitleLabel.setFont(TitleFont);
