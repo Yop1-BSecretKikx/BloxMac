@@ -22,27 +22,21 @@ jpackage \
 
 hdiutil create -volname "BloxMac" -srcfolder ./DMG -ov -format UDZO ./DMG/BloxMac.dmg
 
-rm -rf ~/Desktop/BloxMacGithubPublic/DMG
-mkdir ~/Desktop/BloxMacGithubPublic/DMG
+rm -rf ~/Desktop/BloxMac/DMG
+mkdir ~/Desktop/BloxMac/DMG
 
 #Update GitHub Repo
-cp -R ./src ~/Desktop/BloxMacGithubPublic
-cp -R ./Builder.sh ~/Desktop/BloxMacGithubPublic
-cp -R ./DMG/BloxMac.dmg ~/Desktop/BloxMacGithubPublic/DMG
+cp -R ./src ~/Desktop/BloxMac
+cp -R ./Builder.sh ~/Desktop/BloxMac
+cp -R ./DMG/BloxMac.dmg ~/Desktop/BloxMac/DMG
 
-rm -rf /Users/admin/Desktop/BloxMacGithubPublic/src/Utils/Bundle
+rm -rf /Users/admin/Desktop/BloxMac/src/Utils/Bundle
 
-TARGET_DIR="/Users/admin/Desktop/BloxMacGithubPublic"
+TARGET_DIR="/Users/admin/Desktop/BloxMac"
 
-echo "What Change ? :"
+echo "What Change ? : "
 read input
 
-git lfs track "DMG/BloxMac.dmg"
-echo ".DS_Store" >> .gitignore
-rm -f .DS_Store
-
 git add .
-git commit -m "$input"
-
-git pull origin main --strategy-option=ours
-git push origin main
+git commit -m "test"
+git push
