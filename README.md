@@ -8,7 +8,7 @@ For me, it’s not just about functionality—it’s about making the experience
 
 In short, BloxMac is my way of making Bloxstrap welcoming and easy for everyone, so you can enjoy it without frustration.
 
-### Downloads
+### Downloads Note: This is still under development.
 <p align="">
   <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac.dmg">
     BloxMac.dmg
