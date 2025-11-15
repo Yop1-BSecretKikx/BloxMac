@@ -7,7 +7,7 @@ javac -d out $(find src -name "*.java")
 jar cfm ./AppBuilder/input_jars/BloxMac.jar MANIFEST.MF -C out .
 
 echo "BUIDING ..."
-
+rm -rf ./DMG/BloxMac.app
 rm -rf ./AppBuilder/icons/BloxMac.icns
 
 iconutil -c icns ./AppBuilder/icons/BloxMac.iconset
