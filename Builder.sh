@@ -33,6 +33,7 @@ cp -R ./DMG/BloxMac.dmg ~/Desktop/BloxMac/DMG
 rm -rf /Users/admin/Desktop/BloxMac/src/Utils/Bundle
 
 TARGET_DIR="/Users/admin/Desktop/BloxMac"
+cd "$TARGET_DIR" || { echo "FIND"; exit 1; }
 
 echo "What Change ? : "
 read input
