@@ -39,7 +39,7 @@ cd "$TARGET_DIR" || { echo "FIND"; exit 1; }
 echo "What Change ? : "
 read input
 
-git pull origin main
+git pull origin main --no-rebase
 git add .
 git commit -m "test"
-git push
+git push origin main
