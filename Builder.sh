@@ -1,0 +1,48 @@
+#!/bin/bash
+rm -r out
+rm -rf ./BloxMac.app
+mkdir out
+javac -d out $(find src -name "*.java")
+
+jar cfm ./AppBuilder/input_jars/BloxMac.jar MANIFEST.MF -C out .
+
+echo "BUIDING ..."
+
+rm -rf ./AppBuilder/icons/BloxMac.icns
+
+iconutil -c icns ./AppBuilder/icons/BloxMac.iconset
+
+jpackage \
+  --name BloxMac \
+  --input ./AppBuilder/input_jars \
+  --main-jar BloxMac.jar \
+  --main-class src.View \
+  --type app-image \
+  --icon ./AppBuilder/icons/BloxMac.icns
+
+hdiutil create -volname "BloxMac" -srcfolder ./DMG -ov -format UDZO ./DMG/BloxMac.dmg
+
+rm -rf ~/Desktop/BloxMacGithubPublic/DMG
+mkdir ~/Desktop/BloxMacGithubPublic/DMG
+
+#Update GitHub Repo
+cp -R ./src ~/Desktop/BloxMacGithubPublic
+cp -R ./Builder.sh ~/Desktop/BloxMacGithubPublic
+cp -R ./DMG/BloxMac.dmg ~/Desktop/BloxMacGithubPublic/DMG
+
+rm -rf /Users/admin/Desktop/BloxMacGithubPublic/src/Utils/Bundle
+
+TARGET_DIR="/Users/admin/Desktop/BloxMacGithubPublic"
+
+echo "What Change ? :"
+read input
+
+git lfs track "DMG/BloxMac.dmg"
+echo ".DS_Store" >> .gitignore
+rm -f .DS_Store
+
+git add .
+git commit -m "$input"
+
+git pull origin main --strategy-option=ours
+git push origin main

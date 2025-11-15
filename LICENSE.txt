@@ -1,0 +1,35 @@
+Copyright (c) 2025 [Bakr J]
+
+All Rights Reserved.
+
+THIS SOFTWARE IS PROPRIETARY AND STRICTLY CONFIDENTIAL
+
+IMPORTANT – READ CAREFULLY:
+
+This software, including all source code, binaries, documentation, and related materials (the "Software"), is the exclusive property of the copyright holder. By accessing, downloading, cloning, or otherwise interacting with this Software, you expressly agree to the following terms:
+
+1. **Absolute Prohibition of Use**
+   - You are strictly prohibited from using, running, executing, copying, modifying, translating, adapting, reverse-engineering, decompiling, or creating derivative works from this Software, in whole or in part, for any purpose.
+
+2. **Absolute Prohibition of Distribution**
+   - You may not distribute, transmit, sublicense, publish, share, upload, mirror, or otherwise make this Software available to any third party, through any medium, including but not limited to: public repositories, private repositories, email, cloud storage, websites, or physical media.
+
+3. **Commercial Prohibition**
+   - Any commercial use, licensing, sale, or exploitation of this Software, in whole or in part, is strictly forbidden without explicit written authorization from the copyright holder.
+
+4. **Intellectual Property Ownership**
+   - All rights, title, and interest in and to the Software, including all intellectual property rights, remain exclusively with the copyright holder. No implied license is granted.
+
+5. **Monitoring and Enforcement**
+   - Unauthorized access or use may be tracked through repository analytics, logs, or other technical means. Any violation will be subject to legal action, including but not limited to civil and criminal penalties, to the fullest extent permitted by law.
+
+6. **Disclaimer**
+   - The Software is provided "as is" without any warranty, express or implied. The copyright holder disclaims any liability for damages arising from the use, misuse, or inability to use the Software.
+
+7. **Authorization**
+   - Any authorized use, if granted, requires explicit written permission from the copyright holder. For licensing inquiries, contact: [drakeyop95@gmail.com].
+
+8. **GitHub-Specific Clause**
+   - Cloning, forking, or downloading this repository without prior written authorization is strictly prohibited. Any violation will be considered copyright infringement and subject to immediate takedown requests and legal action under GitHub’s DMCA policies.
+
+BY ACCESSING, CLONING, FORKING, OR OTHERWISE USING THIS SOFTWARE, YOU ACKNOWLEDGE AND AGREE THAT UNAUTHORIZED USE IS STRICTLY PROHIBITED AND MAY RESULT IN LEGAL ACTION.
