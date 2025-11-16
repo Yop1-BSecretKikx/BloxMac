@@ -39,8 +39,10 @@ cd "$TARGET_DIR" || { echo "FIND"; exit 1; }
 echo "What Change ? : "
 read input
 
-git rm --cached DMG/BloxMac.dmg
+
+git filter-repo --path DMG/BloxMac.dmg --invert-paths
+git lfs track "*.dmg"
 git pull origin main --no-rebase
 git add .
-git commit -m "test"
-git push origin main
+git commit -m "$input"
+git push --force origin main
