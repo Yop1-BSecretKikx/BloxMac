@@ -71,6 +71,7 @@ public class View {
 
         //Component to Logic && Actions
 
+        //Main Page
         AddButtonSection.AboutButton.addActionListener(e -> {
             About.Pannel1SetAbout(SidePannel);
         });
@@ -99,6 +100,53 @@ public class View {
         AddButtonSection.BahaviorButton.addActionListener(e -> {
             Behavior.Pannel1SetBehavior(SidePannel);
         });
+
+        //Fastflag Page
+
+        Fastflag.ImportFFlag.addActionListener(e -> {
+            System.out.println("[+] Import FFlag Action");
+            if(ActionHandle.FFlagImportSection(SidePannel))
+            {
+                Popup1.AddPopup(SidePannel, "Flags Added",34,Color.green);
+            }
+            else
+            {
+                Popup1.AddPopup(SidePannel, "Failed Import",130,Color.RED);
+            }
+        });
+
+        Fastflag.ImportMods.addActionListener(e -> {
+            ActionHandle.LoadMods(SidePannel);
+        });
+        
+        Fastflag.RemouveUserFFlag.addActionListener(e -> {
+            ActionHandle.FindAndRemouveSpecificFflag(Fastflag.UserFlags.getText(), Fastflag.UserFlagsValue.getText());
+        });
+        
+        Fastflag.UserAddFlags.addActionListener(e -> {
+            if(ActionHandle.AddUserFFlags(Fastflag.UserFlags.getText(), Fastflag.UserFlagsValue.getText()))
+            {
+                Popup1.AddPopup(SidePannel, "Flags Added Succesfully !", 85, Color.green);
+            }
+            else
+            {
+                Popup1.AddPopup(SidePannel, "Nothing commit",130,Color.RED);
+            }
+        });
+        
+        Fastflag.ResetMods.addActionListener(e -> {
+                //Action Reset Mods todo 
+        });
+
+        //Style Page
+        Style.ImportFont.addActionListener(e -> {
+            ActionHandle.SetFont(SidePannel);
+        });
+
+        Style.ImportCursor.addActionListener(e -> {
+            ActionHandle.SetCursor(SidePannel);
+        });
+        
 
         Window.add(TitleLabel);
         Window.add(SidePannel);
