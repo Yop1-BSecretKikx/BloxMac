@@ -285,7 +285,6 @@ public class ActionHandle {
         {
             File FontFile = OpenFile.getSelectedFile();
             Path targetFile = fontPath.resolve(FontFile.getName());
-
             try
             {
                 Files.copy(FontFile.toPath(), targetFile,StandardCopyOption.REPLACE_EXISTING);
@@ -372,6 +371,7 @@ public class ActionHandle {
         //to do
     }
 
+    //Load Mods To finish
     public static Boolean LoadMods(JPanel CurrentPannel)
     {
         System.out.println("test");
@@ -401,5 +401,47 @@ public class ActionHandle {
 
         return (true);
 
+    }
+
+    //Import Cursor
+    public static Boolean SetCursor(JPanel CurrentPanel)
+    {
+
+        File RobloxCursorPath = new File(PathFinder.RobloxPath() + "Contents/Resources/content/textures/Cursors/KeyboardMouse");
+        String RobloxCursorPathString = PathFinder.RobloxPath() + "Contents/Resources/content/textures/Cursors/KeyboardMouse";
+
+        JFileChooser FileChooser = new JFileChooser();
+        FileChooser.setDialogTitle("Choose Custome Cursor");
+
+        int res = FileChooser.showOpenDialog(CurrentPanel);
+
+        if(res == FileChooser.CANCEL_OPTION)
+        {
+            return (false);
+        }
+        if(res == FileChooser.APPROVE_OPTION)
+        {
+            File choosefile = FileChooser.getSelectedFile();
+            String Filename = choosefile.getName();
+            String NamesList[] = RobloxCursorPath.list();
+
+            Path TargerDirectory = Paths.get(PathFinder.RobloxPath() + "Contents/Resources/content/textures/Cursors/KeyboardMouse");
+            
+            for(String names : NamesList)
+            {
+                System.out.println(names);
+                Path targetFile = TargerDirectory.resolve(names);
+                try
+                {
+                    Files.copy(choosefile.toPath(), targetFile,StandardCopyOption.REPLACE_EXISTING);
+                }catch(IOException e)
+                {
+                    e.getStackTrace();
+                }
+            }
+            
+        }
+        
+        return (true);
     }
 }
