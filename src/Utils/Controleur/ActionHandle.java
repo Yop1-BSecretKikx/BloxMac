@@ -11,8 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import java.util.Optional;
 import java.util.RandomAccess;
-
+import java.util.stream.Stream;
+import java.nio.file.*;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.text.StyledEditorKit.BoldAction;
@@ -28,8 +30,15 @@ import src.Utils.Bundle.Pages.Popup1;
 import java.awt.datatransfer.StringSelection;
 public class ActionHandle {
 
+    public static long ModsPipe = 0;
+    public static int ModsPipeCountInt = 0;
 
+    public static int skipper = 0;
+    public static long fCount = 0;
     //Only Hudge Function
+
+    public static int NumberOFfileToFind = 0;
+
     public static Boolean FindAndRemouveSpecificFflag(String Fflag, String Value)
     {
         try
@@ -372,8 +381,50 @@ public class ActionHandle {
     }
 
     //Load Mods To finish
+    //Recurcive
+    public static void ModsHelper(File file,long ExpectedFileNumber,String[] Names,String[] FPath)
+    {
+        if(ModsPipe == ExpectedFileNumber)
+        {
+            System.out.println("DONE");
+        }
+        if(file.isDirectory())
+        {
+            String[] names = file.list();
+            for(String name : names)
+            {
+                File snipe = new File(file.getPath().toString() + "/" + name);
+                if(snipe.isDirectory())
+                {
+                    ModsHelper(snipe,ExpectedFileNumber,Names,FPath);
+                   // System.out.println("   [+] Dir ---- | " + snipe.getName());
+                }
+                if(snipe.isFile())
+                {
+                    ModsHelper(snipe,ExpectedFileNumber,Names,FPath);
+                   // System.out.println("[+] File ---- | " + snipe.getName());
+                    
+                    Names[(int)ModsPipe] = snipe.getName();
+                    FPath[(int)ModsPipe] = snipe.getPath().toString();
+                    ModsPipe++;
+                    ModsPipeCountInt++;
+                    if(ModsPipe == ExpectedFileNumber)
+                    {
+                       // System.out.println("DONE Expected :" + ExpectedFileNumber + " Got :" + ModsPipe);
+
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public static String[] FindedPathIntoRoblox = new String[NumberOFfileToFind];
+
     public static Boolean LoadMods(JPanel CurrentPannel)
     {
+
+        ModsPipe = 0;
         System.out.println("test");
         JFileChooser ModsFile = new JFileChooser();
         ModsFile.setDialogTitle("Choose Mod");
@@ -386,19 +437,79 @@ public class ActionHandle {
 
         if(res == ModsFile.APPROVE_OPTION)
         {
-            //How should it work walk in all sub directory until u find a file when find remember his path us thats path to place it in the good roblox folder
 
-            File GetFileMods = ModsFile.getSelectedFile();
-            String FileNames[] = GetFileMods.list();
-            if(GetFileMods != null)
+
+            File SelectedFolder = ModsFile.getSelectedFile();
+            long count = 0;
+            try
             {
-               for(String Fname : FileNames)
-               {
-                    //15nov 23h16 Load Mods Todo
-               }
-            }
-        }
+                count += Files.walk(Paths.get(SelectedFolder.toPath().toString()))
+                  .filter(Files::isRegularFile)
+                  .count();
 
+                NumberOFfileToFind = (int)count;
+            }catch(IOException e)
+            {
+                e.getStackTrace();
+            }
+
+            String[] FileOnlyNames = new String[(int)count];
+            String[] FileOnlyNamesWithPath = new String[(int)count];
+            //recurcive file walker
+            ModsHelper(SelectedFolder,count,FileOnlyNames,FileOnlyNamesWithPath);
+            
+            //Next walk into Roblox Files once u find A name thats are in FileOnlyNames[]
+            //Get the path of it into roblox and copy the content of FileOnlyNamesWithPath[] at index where u find it 
+
+            File OpenRobloxFile = new File(PathFinder.RobloxPath());
+            Path RobloxPath = OpenRobloxFile.toPath();
+            int z = 0;
+            for (String toFind : FileOnlyNames) {
+                System.out.println("looking for " + toFind);
+                try {
+                    int index = z;
+                    Path src = Paths.get(FileOnlyNamesWithPath[index]);
+                    Files.walk(RobloxPath)
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.getFileName().toString().equals(toFind))
+                    .findFirst()
+                    .ifPresentOrElse(p -> {
+
+                        try
+                        {
+                            Thread.sleep(10);
+                        }
+                        catch(InterruptedException e)
+                        {
+                            e.getStackTrace();
+                        }
+                        System.out.println("find into roblox : " + p.toAbsolutePath() + " Replace By " + FileOnlyNamesWithPath[index]);
+
+                        try
+                        {
+                            Files.move(src,p.toAbsolutePath(),StandardCopyOption.REPLACE_EXISTING);
+                            
+                        }
+                        catch(IOException e)
+                        {
+                            e.getStackTrace();
+                        }
+                    },
+                    () -> System.out.println("Not find into roblox " + toFind)
+                    );
+
+                   // Files.move(, RobloxPath, null)
+                    
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+            z++;
+            }
+            
+
+        }
         return (true);
 
     }
