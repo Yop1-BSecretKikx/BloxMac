@@ -40,9 +40,12 @@ echo "What Change ? : "
 read input
 
 
+echo "What Change ?: "
+read input
+
 git filter-repo --path DMG/BloxMac.dmg --invert-paths
 git lfs track "*.dmg"
-git pull origin main --no-rebase
+git add .gitattributes
 git add .
 git commit -m "$input"
 git push --force origin main
