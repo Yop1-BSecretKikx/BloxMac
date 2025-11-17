@@ -8,6 +8,9 @@ For me, it’s not just about functionality—it’s about making the experience
 
 In short, BloxMac is my way of making Bloxstrap welcoming and easy for everyone, so you can enjoy it without frustration.
 
+If you wanna see more about BloxMac Join our Dicorde 
+<a href="https://discord.gg/Ptpb5pWM">BloxMac Discord</a>
+
 ### Downloads
 Note: This is still under development. Mac Intel is Not available yet !
 
@@ -47,8 +50,5 @@ Here’s a preview of BloxMac Not finished
   </tr>
 </table>
 
-Inspired by <a href="https://github.com/bloxstraplabs/bloxstrap">BloxStrap</a>
-
 Hey you still here ? wow 
-if you wanna see more about BloxMac Join our Dicorde 
-<a href="???">Not created yet</a>
+Inspired by <a href="https://github.com/bloxstraplabs/bloxstrap">BloxStrap</a>
