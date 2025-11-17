@@ -47,6 +47,8 @@ Here’s a preview of BloxMac Not finished
   </tr>
 </table>
 
+Inspired by <a href="https://github.com/bloxstraplabs/bloxstrap">BloxStrap</a>
+
 Hey you still here ? wow 
 if you wanna see more about BloxMac Join our Dicorde 
 <a href="???">Not created yet</a>
