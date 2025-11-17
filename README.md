@@ -41,11 +41,10 @@ Here’s a preview of BloxMac Not finished
     <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/About.jpg?raw=true" width="400" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFflag.jpg?raw=true" width="400" /></td>
     <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/Behavior.jpg?raw=true" width="400" /></td>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFlag.jpg?raw=true" width="400" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFflag.jpg?raw=true" width="400" /></td>
     <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/BloxMac.png?raw=true" width="400" /></td>
   </tr>
 </table>
