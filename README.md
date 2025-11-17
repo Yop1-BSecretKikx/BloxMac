@@ -8,13 +8,26 @@ For me, it’s not just about functionality—it’s about making the experience
 
 In short, BloxMac is my way of making Bloxstrap welcoming and easy for everyone, so you can enjoy it without frustration.
 
-### Downloads Note: This is still under development.
-<p align="">
-  <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac.dmg">
-    BloxMac.dmg
-    <img src="https://raw.githubusercontent.com/Yop1-BSecretKikx/BloxMac/refs/heads/main/asset/logo.png" style="margin-top:20px;"/> 
-  </a>
-</p>
+### Downloads
+Note: This is still under development. Mac Intel is Not available yet !
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac.dmg">
+        Mac ARM<br/>
+        <img src="https://raw.githubusercontent.com/Yop1-BSecretKikx/BloxMac/refs/heads/main/asset/logo.png" width="30" style="margin-top:5px;" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac.dmg">
+        Mac Intel<br/>
+        <img src="https://raw.githubusercontent.com/Yop1-BSecretKikx/BloxMac/refs/heads/main/asset/logo.png" width="30" style="margin-top:5px;" />
+      </a>
+    </td>
+  </tr>
+</table>
+
 So yeah, this is my first big project. It might not be perfect, but I’m trying my best!
 
 Here’s a preview of BloxMac Not finished
