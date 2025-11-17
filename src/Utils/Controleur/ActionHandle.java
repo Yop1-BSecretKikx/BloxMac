@@ -1,5 +1,5 @@
 package src.Utils.Controleur;
-
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -36,7 +36,7 @@ public class ActionHandle {
     public static int skipper = 0;
     public static long fCount = 0;
     //Only Hudge Function
-
+    public static Boolean ShowModsPopup = false;
     public static int NumberOFfileToFind = 0;
 
     public static Boolean FindAndRemouveSpecificFflag(String Fflag, String Value)
@@ -432,13 +432,21 @@ public class ActionHandle {
         ModsFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int res = ModsFile.showOpenDialog(CurrentPannel);
 
+        try
+            {
+                System.out.println("yo");
+                Popup1.AddPopup(CurrentPannel, "Importing Mods Wait !!!", 40,Color.ORANGE);
+                Thread.sleep(2000);
+                System.out.println("yo");
+            }
+            catch(InterruptedException e)
+            {
+                 e.getStackTrace();
+            }
 
         if(res == ModsFile.CANCEL_OPTION)return (false);
-
         if(res == ModsFile.APPROVE_OPTION)
         {
-
-
             File SelectedFolder = ModsFile.getSelectedFile();
             long count = 0;
             try
@@ -507,11 +515,8 @@ public class ActionHandle {
 
             z++;
             }
-            
-
         }
         return (true);
-
     }
 
     //Import Cursor
@@ -555,4 +560,7 @@ public class ActionHandle {
         
         return (true);
     }
+
+    
+
 }

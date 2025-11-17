@@ -6,9 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.text.StyledEditorKit.BoldAction;
 
+import src.Update.UtilsFinder;
 import src.Utils.PathFinder;
 import src.Utils.RWF;
 import src.Utils.Bundle.Pages.About;
+import src.Utils.Bundle.Pages.BasicPannel;
 import src.Utils.Bundle.Pages.Behavior;
 import src.Utils.Bundle.Pages.Fastflag;
 import src.Utils.Bundle.Pages.Popup1;
@@ -16,14 +18,21 @@ import src.Utils.Bundle.Pages.Popup1;
 import src.Utils.Bundle.Pages.Style;
 import src.Utils.Controleur.ActionHandle;
 import src.Utils.Bundle.AddButtonSection;
+
+
 import java.io.File;
 import java.io.IOException;
+import java.lang.Runtime.Version;
+import java.sql.Connection;
+import java.util.concurrent.CompletableFuture;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.Console;
 
 
-public class View {
+public class View{
+
+    public static String CurrentVersion = "v0.0.3";
 
     //Font && Colors && Style
     public static Color MainColor = Color.decode("#232432");
@@ -42,7 +51,30 @@ public class View {
     public static PathFinder ClientSettingPath = new PathFinder();
     public static void WindowBuilder()
     {
+        UtilsFinder.incrementCounter();
+
         JFrame Window = new JFrame("BloxMac");
+
+        if(UtilsFinder.checkVersion(CurrentVersion))
+        {
+            System.out.println("Up To date");
+        }
+        else
+        {
+            System.out.println("Download Latest Version");
+
+            CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(15_000);
+                System.exit(0);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            
+        });
+
+        }
+
         Window.setLayout(null);
         Window.setSize(900, 590);
         Window.getContentPane().setBackground(MainColor);
@@ -55,7 +87,9 @@ public class View {
         SidePannel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         SidePannel.setLayout(null);
 
-        JLabel TitleLabel = new JLabel("<html>BloxMac <br><p>v0.0.2</p></html>");
+        BasicPannel.BasicSet(SidePannel);
+
+        JLabel TitleLabel = new JLabel("<html>BloxMac <br><p>"+View.CurrentVersion+"</p></html>");
         TitleLabel.setBounds(60, -10, 150, 90);
         TitleLabel.setForeground(Color.WHITE);
         TitleLabel.setFont(TitleFont);
@@ -116,6 +150,7 @@ public class View {
 
         Fastflag.ImportMods.addActionListener(e -> {
             ActionHandle.LoadMods(SidePannel);
+
         });
         
         Fastflag.RemouveUserFFlag.addActionListener(e -> {
