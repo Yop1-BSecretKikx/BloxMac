@@ -432,23 +432,15 @@ public class ActionHandle {
         ModsFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int res = ModsFile.showOpenDialog(CurrentPannel);
 
-        try
-            {
-                System.out.println("yo");
-                Popup1.AddPopup(CurrentPannel, "Importing Mods Wait !!!", 40,Color.ORANGE);
-                Thread.sleep(2000);
-                System.out.println("yo");
-            }
-            catch(InterruptedException e)
-            {
-                 e.getStackTrace();
-            }
 
         if(res == ModsFile.CANCEL_OPTION)return (false);
         if(res == ModsFile.APPROVE_OPTION)
         {
             File SelectedFolder = ModsFile.getSelectedFile();
-            long count = 0;
+
+            //Use Thread to not block
+            new Thread(() -> {
+                long count = 0;
             try
             {
                 count += Files.walk(Paths.get(SelectedFolder.toPath().toString()))
@@ -460,7 +452,6 @@ public class ActionHandle {
             {
                 e.getStackTrace();
             }
-
             String[] FileOnlyNames = new String[(int)count];
             String[] FileOnlyNamesWithPath = new String[(int)count];
             //recurcive file walker
@@ -472,8 +463,13 @@ public class ActionHandle {
             File OpenRobloxFile = new File(PathFinder.RobloxPath());
             Path RobloxPath = OpenRobloxFile.toPath();
             int z = 0;
-            for (String toFind : FileOnlyNames) {
+            int o = 0;
+            for (String toFind : FileOnlyNames)
+            {
                 System.out.println("looking for " + toFind);
+
+                Popup1.ImportMods(CurrentPannel, "Try to import ("+ toFind +") " + o + "/" + count, 40,Color.ORANGE);
+
                 try {
                     int index = z;
                     Path src = Paths.get(FileOnlyNamesWithPath[index]);
@@ -512,9 +508,14 @@ public class ActionHandle {
                 {
                     e.printStackTrace();
                 }
-
+            o++;
             z++;
             }
+
+            }).start();
+
+
+            
         }
         return (true);
     }

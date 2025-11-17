@@ -32,7 +32,7 @@ import java.io.Console;
 
 public class View{
 
-    public static String CurrentVersion = "v0.0.3";
+    public static String CurrentVersion = "v0.0.4";
 
     //Font && Colors && Style
     public static Color MainColor = Color.decode("#232432");
@@ -149,8 +149,7 @@ public class View{
         });
 
         Fastflag.ImportMods.addActionListener(e -> {
-            ActionHandle.LoadMods(SidePannel);
-
+                ActionHandle.LoadMods(SidePannel);
         });
         
         Fastflag.RemouveUserFFlag.addActionListener(e -> {

@@ -43,7 +43,7 @@ cd "$TARGET_DIR" || exit 1
 read -p "change ? : " input
 
 git add .
-git commit -m "Update"
+git commit -m "Update Popup + style && handle size"
 git push origin main --force
 
 #git filter-repo --path src/Update --invert-paths --force
