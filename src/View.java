@@ -32,7 +32,7 @@ import java.io.Console;
 
 public class View{
 
-    public static String CurrentVersion = "v0.0.3";
+    public static String CurrentVersion = "v0.0.2";
 
     //Font && Colors && Style
     public static Color MainColor = Color.decode("#232432");

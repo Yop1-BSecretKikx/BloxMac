@@ -1,4 +1,7 @@
 #!/bin/bash
+
+cp -R ./src ~/Desktop/BloxMac
+
 rm -r out
 rm -rf ./BloxMac.app
 mkdir out
@@ -27,25 +30,26 @@ hdiutil create -volname "BloxMac" -srcfolder ./DMG -ov -format UDZO ./DMG/BloxMa
 rm -rf ~/Desktop/BloxMac/DMG
 mkdir ~/Desktop/BloxMac/DMG
 
-#Update GitHub Repo
 cp -R ./src ~/Desktop/BloxMac
 cp -R ./Builder.sh ~/Desktop/BloxMac
 cp -R ./DMG/BloxMac.dmg ~/Desktop/BloxMac/DMG
+
 rm -rf /Users/admin/Desktop/BloxMac/src/Utils/Bundle
+rm -rf /Users/admin/Desktop/BloxMac/src/Update
 
 TARGET_DIR="/Users/admin/Desktop/BloxMac"
-cd "$TARGET_DIR" || { echo "FIND"; exit 1; }
+cd "$TARGET_DIR" || exit 1
 
-echo "What Change ? : "
-read input
+read -p "change ? : " input
 
-
-echo "What Change ?: "
-read input
-
-git filter-repo --path DMG/BloxMac.dmg --invert-paths
-git lfs track "*.dmg"
-git add .gitattributes
 git add .
-git commit -m "$input"
-git push --force origin main
+git commit -m "Update"
+git push origin main --force
+
+#git filter-repo --path src/Update --invert-paths --force
+####git remote add origin git@github.com:Yop1-BSecretKikx/BloxMac.git
+
+###git add -A
+##git commit -m "Update repository"
+#git push origin main --force
+
