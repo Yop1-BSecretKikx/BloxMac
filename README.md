@@ -19,9 +19,20 @@ So yeah, this is my first big project. It might not be perfect, but I’m trying
 
 Here’s a preview of BloxMac Not finished
 
-![Pic](https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/About.jpg?raw=true)
-![Pic](https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFflag.jpg?raw=true)
-![Pic](https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/Behavior.jpg?raw=true)
+<table>
+  <tr>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/Menu.png?raw=true" width="400" /></td>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/About.jpg?raw=true" width="400" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFflag.jpg?raw=true" width="400" /></td>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/Behavior.jpg?raw=true" width="400" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFflag.jpg?raw=true" width="400" /></td>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/BloxMac.png?raw=true" width="400" /></td>
+  </tr>
+</table>
 
 Hey you still here ? wow 
 if you wanna see more about BloxMac Join our Dicorde 
