@@ -17,13 +17,13 @@ Note: This is still under development. Mac Intel is Not available yet !
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac.dmg">
+      <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac-ARM.dmg">
         Mac ARM<br/>
         <img src="https://raw.githubusercontent.com/Yop1-BSecretKikx/BloxMac/refs/heads/main/asset/logo.png" width="30" style="margin-top:5px;" />
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac.dmg">
+      <a href="https://github.com/Yop1-BSecretKikx/BloxMac/raw/refs/heads/main/DMG/BloxMac-Intel.dmg">
         Mac Intel<br/>
         <img src="https://raw.githubusercontent.com/Yop1-BSecretKikx/BloxMac/refs/heads/main/asset/logo.png" width="30" style="margin-top:5px;" />
       </a>
