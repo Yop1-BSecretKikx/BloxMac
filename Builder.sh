@@ -3,7 +3,7 @@
 cp -R ./src ~/Desktop/BloxMac
 
 rm -r out
-rm -rf ./BloxMac.app
+rm -rf ./BloxMac-Intel.app ./BloxMac-ARM.app
 mkdir out
 javac -d out $(find src -name "*.java")
 
@@ -15,16 +15,26 @@ rm -rf ./AppBuilder/icons/BloxMac.icns
 
 iconutil -c icns ./AppBuilder/icons/BloxMac.iconset
 
-jpackage \
-  --name BloxMac \
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17_x64.jdk/Contents/Home
+jpackage --name BloxMac-Intel \
   --input ./AppBuilder/input_jars \
   --main-jar BloxMac.jar \
   --main-class src.View \
   --type app-image \
   --icon ./AppBuilder/icons/BloxMac.icns
 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17_arm64.jdk/Contents/Home
+jpackage --name BloxMac-ARM \
+  --input ./AppBuilder/input_jars \
+  --main-jar BloxMac.jar \
+  --main-class src.View \
+  --type app-image \
+  --icon ./AppBuilder/icons/BloxMac.icns
 
-cp -R ./BloxMac.app ./DMG
+mkdir -p ./DMG
+cp -R ./BloxMac-Intel.app ./DMG/
+cp -R ./BloxMac-ARM.app ./DMG/
+
 hdiutil create -volname "BloxMac" -srcfolder ./DMG -ov -format UDZO ./DMG/BloxMac.dmg
 
 rm -rf ~/Desktop/BloxMac/DMG
@@ -43,13 +53,5 @@ cd "$TARGET_DIR" || exit 1
 read -p "change ? : " input
 
 git add .
-git commit -m "Update Popup + style && handle size"
+git commit -m "Ui update FastFlag Update"
 git push origin main --force
-
-#git filter-repo --path src/Update --invert-paths --force
-####git remote add origin git@github.com:Yop1-BSecretKikx/BloxMac.git
-
-###git add -A
-##git commit -m "Update repository"
-#git push origin main --force
-

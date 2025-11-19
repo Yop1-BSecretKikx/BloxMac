@@ -3,7 +3,10 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.text.StyledEditorKit.BoldAction;
 
 import src.Update.UtilsFinder;
@@ -32,7 +35,7 @@ import java.io.Console;
 
 public class View{
 
-    public static String CurrentVersion = "v0.0.4";
+    public static String CurrentVersion = "v0.0.5";
 
     //Font && Colors && Style
     public static Color MainColor = Color.decode("#232432");
@@ -40,6 +43,8 @@ public class View{
     public static Color PanelBorderColor = Color.decode("#222230");
     public static Color MoreClairance = Color.decode("#33334D");
     public static Color ButtonHoverTextColor = Color.decode("#bab4f0");
+
+    public static Font SectionFont = new Font("Monospaced",Font.ITALIC,25);
     public static Font TitleFont = new Font("Arial", Font.BOLD, 30);
     public static Font ButtonFont = new Font("Arial", Font.BOLD, 25);
     public static Font BasicTextFont = new Font("Arial", Font.BOLD, 16);
@@ -47,6 +52,8 @@ public class View{
     public static Font SmallButtonText = new Font("Arial", Font.BOLD, 10);
     public static Font SmallTextFont = new Font("Arial",Font.ITALIC,10);
     public static Font SmallSmallTextFont = new Font("Arial",Font.ITALIC,4);
+    //Icons && Pic
+
     //Logic && Action && Function Import;
     public static PathFinder ClientSettingPath = new PathFinder();
     public static void WindowBuilder()
@@ -157,20 +164,61 @@ public class View{
         });
         
         Fastflag.UserAddFlags.addActionListener(e -> {
-            if(ActionHandle.AddUserFFlags(Fastflag.UserFlags.getText(), Fastflag.UserFlagsValue.getText()))
-            {
-                Popup1.AddPopup(SidePannel, "Flags Added Succesfully !", 85, Color.green);
-            }
-            else
-            {
-                Popup1.AddPopup(SidePannel, "Nothing commit",130,Color.RED);
-            }
+
+                if(ActionHandle.AddUserFFlags(Fastflag.UserFlags.getText(), Fastflag.UserFlagsValue.getText()))
+                {
+                    Popup1.AddPopup(SidePannel, "Flags Added Succesfully !", 85, Color.green);
+                }
+                else
+                {
+                    Popup1.AddPopup(SidePannel, "Nothing commit",130,Color.RED);
+                }
+            
         });
         
         Fastflag.ResetMods.addActionListener(e -> {
                 //Action Reset Mods todo 
         });
 
+        Fastflag.LightTechOpenChoice.addActionListener(e ->{
+            SwingUtilities.invokeLater(() -> {
+               Fastflag.LighMenu.show(Fastflag.LightTechOpenChoice, 0, Fastflag.LightTechOpenChoice.getHeight());
+            });
+        });
+        
+        Fastflag.GraphicsApi.addActionListener(e ->{
+            SwingUtilities.invokeLater(() -> {
+               Fastflag.GraphicsMenu.show(Fastflag.GraphicsApi, 0, Fastflag.GraphicsApi.getHeight());
+            });
+        });
+
+        Fastflag.SetTextureLevel.addChangeListener(e -> {
+            System.out.println("[+] Texture : " + Fastflag.SetTextureLevel.getValue());
+            int Value = Fastflag.SetTextureLevel.getValue();
+            ActionHandle.SetTexture(Value);
+        });
+ 
+        Fastflag.GrassEffect.addActionListener(e -> {
+            if(Fastflag.GrassEffect.isSelected())
+            {
+                ActionHandle.SetVisualeffect("true");
+            }else
+            {
+                ActionHandle.SetVisualeffect("false");
+            }
+        });
+       
+        Fastflag.GraySky.addActionListener(e -> {
+            if(Fastflag.GraySky.isSelected())
+            {
+                ActionHandle.SetGraySky("true");
+            }else
+            {
+                ActionHandle.SetGraySky("false");
+            }
+        });
+       
+       
         //Style Page
         Style.ImportFont.addActionListener(e -> {
             ActionHandle.SetFont(SidePannel);
@@ -180,6 +228,7 @@ public class View{
             ActionHandle.SetCursor(SidePannel);
         });
         
+
 
         Window.add(TitleLabel);
         Window.add(SidePannel);

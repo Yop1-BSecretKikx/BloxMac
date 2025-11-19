@@ -15,8 +15,31 @@ import java.util.Optional;
 import java.util.RandomAccess;
 import java.util.stream.Stream;
 import java.nio.file.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.text.StyledEditorKit.BoldAction;
+
+import java.awt.*;
+
+import src.View;
+import src.Utils.ElementStyle;
+import src.Utils.PathFinder;
+import src.Utils.RWF;
+import src.Utils.Controleur.ActionHandle;
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.text.StyledEditorKit.BoldAction;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -63,7 +86,7 @@ public class ActionHandle {
         //4 nov : 2:28 -> Should Add the User FFlag into Client Setting properly;
         String ClientSettingPath = PathFinder.FindPathClientSetting();
         String UserFFlagsToSyntax = "";
-        if(!(FFlags.isEmpty() && Value.isEmpty()))
+        if(!(FFlags.isEmpty() || Value.isEmpty()))
         {
              UserFFlagsToSyntax = "    \"" + FFlags + "\"" + ": " + "\"" +Value + "\"" + "\n";
         }
@@ -562,6 +585,132 @@ public class ActionHandle {
         return (true);
     }
 
-    
+
+    public static Boolean LightingApiChanger(String ChosenApi)
+    {
+        if(ChosenApi == "Voxel")
+        {
+            System.out.println("[+] Adding Voxel Light Api");
+            ActionHandle.AddUserFFlags("DFFlagDebugRenderForceTechnologyVoxel", "true");
+            
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugForceFutureIsBrightPhase2", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugForceFutureIsBrightPhase3", "true");
+        }
+        if(ChosenApi == "ShadowMap")
+        {
+            System.out.println("[+] Adding ShadowMap Light Api");
+
+            ActionHandle.AddUserFFlags("FFlagDebugForceFutureIsBrightPhase2", "true");
+
+            ActionHandle.FindAndRemouveSpecificFflag("DFFlagDebugRenderForceTechnologyVoxel", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugForceFutureIsBrightPhase3", "true");
+        }
+        if(ChosenApi == "Future")
+        {
+            System.out.println("[+] Adding Future Light Api");
+            ActionHandle.AddUserFFlags("FFlagDebugForceFutureIsBrightPhase3", "true");
+
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugForceFutureIsBrightPhase2", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("DFFlagDebugRenderForceTechnologyVoxel", "true");
+        }
+        if(ChosenApi == "Default")
+        {
+            ActionHandle.FindAndRemouveSpecificFflag("DFFlagDebugRenderForceTechnologyVoxel", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugForceFutureIsBrightPhase2", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugForceFutureIsBrightPhase3", "true");
+            System.out.println("[+] Adding Default Light Api");
+        }
+        return true;
+    }
+
+    public static Boolean GraphicsApiChanger(String ChosenApi)
+    {
+
+
+
+        if(ChosenApi == "Default")
+        {
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugGraphicsPreferVulkan", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugGraphicsDisableMetal", "true");
+        }
+        if(ChosenApi == "Metal")
+        {
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugGraphicsPreferVulkan", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugGraphicsDisableMetal", "true");
+
+
+            ActionHandle.AddUserFFlags("FFlagDebugGraphicsPreferVulkan", "false");
+            ActionHandle.AddUserFFlags("FFlagDebugGraphicsDisableMetal", "true");
+        }
+        if(ChosenApi == "Vulkan")
+        {
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugGraphicsPreferVulkan", "true");
+            ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugGraphicsDisableMetal", "true");
+
+
+            ActionHandle.AddUserFFlags("FFlagDebugGraphicsPreferVulkan", "true");
+            ActionHandle.AddUserFFlags("FFlagDebugGraphicsDisableMetal", "false");
+        }
+        return (true);
+    }
+
+    public static Boolean SetTexture(int Value)
+    {
+        String CastedValue = String.valueOf(Value);
+        ActionHandle.FindAndRemouveSpecificFflag("DFIntTextureQualityOverride", "true");
+        ActionHandle.FindAndRemouveSpecificFflag("FIntGraphicsQualityLevel", "true");
+        ActionHandle.FindAndRemouveSpecificFflag("FIntGrassMovementReducedMotionFactor", "true");
+
+
+        ActionHandle.AddUserFFlags("DFIntTextureQualityOverride", CastedValue);
+        ActionHandle.AddUserFFlags("FIntGraphicsQualityLevel", CastedValue);
+        String NewValue = "0";
+        if(Value == 2)
+        {
+            NewValue = String.valueOf(Value - 1);
+        }
+        ActionHandle.AddUserFFlags("FIntGrassMovementReducedMotionFactor", NewValue);
+        return (true);
+    }
+
+    public static Boolean SetVisualeffect(String Value)
+    {
+        ActionHandle.FindAndRemouveSpecificFflag("FIntFRMMaxGrassDistance", "true");
+
+        if(Value == "false")
+        {
+            ActionHandle.AddUserFFlags("FIntFRMMaxGrassDistance", "false");
+        }
+        else
+        {
+            ActionHandle.AddUserFFlags("FIntFRMMaxGrassDistance", "true");
+        }
+
+
+        return (true);
+
+    }
+
+    public static Boolean ForceFpsUncap(String Value)
+    {
+        return (true);
+    }
+
+    public static Boolean SetGraySky(String Value)
+    {
+        ActionHandle.FindAndRemouveSpecificFflag("FFlagDebugSkyGray", "true");
+
+        if(Value == "true")
+        {
+            ActionHandle.AddUserFFlags("FFlagDebugSkyGray", Value);
+        }
+        else
+        {
+            ActionHandle.AddUserFFlags("FFlagDebugSkyGray", Value);
+        }
+
+        return (true);
+    }
+
 
 }
