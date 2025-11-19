@@ -3,7 +3,7 @@
 cp -R ./src ~/Desktop/BloxMac
 
 rm -r out
-rm -rf ./BloxMac-Intel.app ./BloxMac-ARM.app
+rm -rf ./BloxMac-Intel.app ./BloxMac-ARM.app ./DMG
 mkdir out
 javac -d out $(find src -name "*.java")
 
@@ -15,6 +15,7 @@ rm -rf ./AppBuilder/icons/BloxMac.icns
 
 iconutil -c icns ./AppBuilder/icons/BloxMac.iconset
 
+
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17_x64.jdk/Contents/Home
 jpackage --name BloxMac-Intel \
   --input ./AppBuilder/input_jars \
@@ -22,6 +23,7 @@ jpackage --name BloxMac-Intel \
   --main-class src.View \
   --type app-image \
   --icon ./AppBuilder/icons/BloxMac.icns
+
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17_arm64.jdk/Contents/Home
 jpackage --name BloxMac-ARM \
@@ -32,17 +34,24 @@ jpackage --name BloxMac-ARM \
   --icon ./AppBuilder/icons/BloxMac.icns
 
 mkdir -p ./DMG
-cp -R ./BloxMac-Intel.app ./DMG/
-cp -R ./BloxMac-ARM.app ./DMG/
 
-hdiutil create -volname "BloxMac" -srcfolder ./DMG -ov -format UDZO ./DMG/BloxMac.dmg
+
+cp -R ./BloxMac-Intel.app ./DMG
+hdiutil create -volname "BloxMac-Intel" -srcfolder ./DMG/BloxMac-Intel.app -ov -format UDZO ./DMG/BloxMac-Intel.dmg
+rm -rf ./DMG/BloxMac-Intel.app
+
+
+cp -R ./BloxMac-ARM.app ./DMG
+hdiutil create -volname "BloxMac-ARM" -srcfolder ./DMG/BloxMac-ARM.app -ov -format UDZO ./DMG/BloxMac-ARM.dmg
+rm -rf ./DMG/BloxMac-ARM.app
+
 
 rm -rf ~/Desktop/BloxMac/DMG
-mkdir ~/Desktop/BloxMac/DMG
+mkdir -p ~/Desktop/BloxMac/DMG
+cp ./DMG/*.dmg ~/Desktop/BloxMac/DMG/
 
 cp -R ./src ~/Desktop/BloxMac
 cp -R ./Builder.sh ~/Desktop/BloxMac
-cp -R ./DMG/BloxMac.dmg ~/Desktop/BloxMac/DMG
 
 rm -rf /Users/admin/Desktop/BloxMac/src/Utils/Bundle
 rm -rf /Users/admin/Desktop/BloxMac/src/Update
