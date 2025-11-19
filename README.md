@@ -42,6 +42,7 @@ Here’s a preview of BloxMac Not finished
   </tr>
   <tr>
     <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/Behavior.jpg?raw=true" width="400" /></td>
+    <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FontMods.jpg?raw=true" width="400" /></td>
     <td><img src="https://github.com/Yop1-BSecretKikx/BloxMac/blob/main/asset/FastFlag.jpg?raw=true" width="400" /></td>
   </tr>
   <tr>
