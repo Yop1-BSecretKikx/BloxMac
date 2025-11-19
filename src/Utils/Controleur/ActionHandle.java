@@ -13,6 +13,7 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 import java.util.RandomAccess;
+import java.util.concurrent.Flow.Subscriber;
 import java.util.stream.Stream;
 import java.nio.file.*;
 import java.awt.event.FocusAdapter;
@@ -61,6 +62,19 @@ public class ActionHandle {
     //Only Hudge Function
     public static Boolean ShowModsPopup = false;
     public static int NumberOFfileToFind = 0;
+
+    //Conf BloxMac
+
+    public static Path GetCachPath = Paths.get("/Users/Shared/BloxMacConfig.txt");
+
+    public static String BloxMacConfTemplate = """
+            Fps_Uncap:
+            LightingTect:
+            GraphicsApi:
+            TextureLevel:
+            EnableGrass:
+            EnableGraySky:
+            """;
 
     public static Boolean FindAndRemouveSpecificFflag(String Fflag, String Value)
     {
@@ -712,5 +726,210 @@ public class ActionHandle {
         return (true);
     }
 
+    //BloxMac Conf
+    public static void InitBloxMacConf()
+    {
 
+        if(!Files.exists(GetCachPath))
+        {
+            try
+            {
+                Files.createFile(GetCachPath);
+            }
+            catch(IOException e)
+            {
+                e.getStackTrace();
+            }
+            try
+        {
+            Files.writeString(GetCachPath, ActionHandle.BloxMacConfTemplate);
+        }
+        catch(IOException e)
+        {
+            e.getStackTrace();
+        }
+        }
+    }
+
+    public static void ConfToFindToadd(String tofind,String value)
+    {   
+        String ConfContent = "";
+        try
+        {
+            ConfContent = Files.readString(GetCachPath);
+        }catch(IOException e)
+        {
+            e.getStackTrace();
+        }
+
+        String[] lines = ConfContent.split("\n");
+        StringBuilder sb = new StringBuilder();
+        for (String line : lines) {
+            if (line.startsWith(tofind))
+            {
+                sb.append(tofind + value).append("\n");
+            }
+            else
+            {
+                sb.append(line).append("\n");
+            }
+           try
+           {
+                Files.writeString(GetCachPath, sb.toString());
+           }catch(IOException e)
+           {
+                e.getStackTrace();
+           }
+}
+    }
+
+    public static void ReadConfAddContent(String[] Values)
+    {
+        for(String value : Values)
+        {
+            System.out.println(value);
+
+            if(value == Fastflag.LightTechOpenChoice.getText())
+            {
+                ConfToFindToadd("LightingTect:", value);
+
+            }
+            
+            if(value == Fastflag.GraphicsApi.getText())
+            {
+                ConfToFindToadd("GraphicsApi:", value);
+            }
+
+            if(value.equals(Integer.toString(Fastflag.SetTextureLevel.getValue())))
+            {
+                ConfToFindToadd("TextureLevel:", value);
+            }
+
+            if(value == "GrassEffect_YES" || value == "GrassEffect_NO")
+            {
+                ConfToFindToadd("EnableGrass:", value);
+            }
+            if(value == "GraySky_YES" || value == "GraySky_NO")
+            {
+                ConfToFindToadd("EnableGraySky:", value);
+            }
+
+        }
+
+        try
+        {
+            System.out.println(Files.readString(GetCachPath));
+        }
+        catch(IOException e)
+        {
+            e.getStackTrace();
+        }
+    }
+
+    public static void RefrechLatestConfIntoCache()
+    {
+        InitBloxMacConf();
+
+
+        //3
+        String GraphisApi = Fastflag.GraphicsApi.getText();
+        String LightTech = Fastflag.LightTechOpenChoice.getText();
+        String TextureLevel = Integer.toString(Fastflag.SetTextureLevel.getValue());
+        String GrassEffect = Fastflag.GrassEffect.isSelected() ? "GrassEffect_YES" : "GrassEffect_NO";
+        String GraySky = Fastflag.GraySky.isSelected() ? "GraySky_YES" : "GraySky_NO";
+
+
+        String[] Config = {GraphisApi,LightTech,TextureLevel,GrassEffect,GraySky};
+
+        ReadConfAddContent(Config);
+        
+    }
+
+    public static void LoadLatestConfFromCache()throws Exception
+    {
+        String ConfContent = Files.readString(GetCachPath);
+
+        String LighTechOtionnames[] = {"Voxel   🔧","Default   🔧","ShadowMap   🔧","Future   🔧"}; 
+        for(String option : LighTechOtionnames)
+        {
+            if(ConfContent.contains("LightingTect:"+option))
+            {
+                Fastflag.LightTechOpenChoice.setText(option);
+            }
+        }
+
+        String GraphicsOtionnames[] = {"Metal   🔧","Default   🔧","Vulkan   🔧","OpenGL (intel)   🔧"}; 
+        for(String option : GraphicsOtionnames)
+        {
+            if(ConfContent.contains("GraphicsApi:"+option))
+            {
+                Fastflag.GraphicsApi.setText(option);
+            }
+        }
+
+        String GrassEffect[] = {"GrassEffect_YES","GrassEffect_NO"}; 
+        for(String option : GrassEffect)
+        {
+            if(ConfContent.contains("EnableGrass:"+option))
+            {
+                if(option.equals("GrassEffect_YES"))
+                {
+                    Fastflag.GrassEffect.setSelected(true);
+                }
+                if(option.equals("GrassEffect_NO"))
+                {
+                    Fastflag.GrassEffect.setSelected(false);
+                }
+            }
+        }
+
+        String GraySky[] = {"GraySky_YES","GraySky_NO"}; 
+        for(String option : GraySky)
+        {
+            if(ConfContent.contains("EnableGraySky:"+option))
+            {
+                if(option.equals("GraySky_YES"))
+                {
+                    Fastflag.GraySky.setSelected(true);
+                }
+                if(option.equals("GraySky_NO"))
+                {
+                    Fastflag.GraySky.setSelected(false);
+                }
+            }
+        }
+
+        String SetTextureLevel[] = {"0","1","2"};
+        for(String option : SetTextureLevel)
+        {
+            if(ConfContent.contains("TextureLevel:"+option))
+            {
+                if(option.equals("0"))
+                {
+                    Fastflag.SetTextureLevel.setValue(Integer.parseInt(option));
+                }
+                if(option.equals("1"))
+                {
+                    Fastflag.SetTextureLevel.setValue(Integer.parseInt(option));
+                }
+                if(option.equals("2"))
+                {
+                    Fastflag.SetTextureLevel.setValue(Integer.parseInt(option));
+                }
+            }
+        }
+        /*
+LightingTect:Voxel   🔧
+GraphicsApi:Metal   🔧
+TextureLevel:2
+EnableGrass:GrassEffect_NO
+EnableGraySky:GraySky_NO
+         */
+    }
+
+    public static void LoadBloxmacConfigOnStart()
+    {
+        //From Config file add fflags !!!!!
+        //to do 19nov 20h17 -> 20
+    }
 }

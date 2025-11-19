@@ -62,5 +62,5 @@ cd "$TARGET_DIR" || exit 1
 read -p "change ? : " input
 
 git add .
-git commit -m "Ui update FastFlag Update"
+git commit -m "Add Import && Export into FflagFlag page and Set a Beta on Bloxmac Config"
 git push origin main --force

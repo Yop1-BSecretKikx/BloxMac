@@ -30,12 +30,13 @@ import java.sql.Connection;
 import java.util.concurrent.CompletableFuture;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Desktop.Action;
 import java.io.Console;
 
 
 public class View{
 
-    public static String CurrentVersion = "v0.0.5";
+    public static String CurrentVersion = "v0.0.6";
 
     //Font && Colors && Style
     public static Color MainColor = Color.decode("#232432");
@@ -239,6 +240,15 @@ public class View{
     public static void main(String[] args)
     {
 
+        try
+        {
+            ActionHandle.LoadLatestConfFromCache();
+        }catch(Exception e)
+        {
+            e.getStackTrace();
+        }
+
+        ActionHandle.InitBloxMacConf();
         //auto CreateFile if not existe
         File ClientSettingOpen = new File(PathFinder.FindPathClientSetting());
         if(!(ClientSettingOpen.exists()))
@@ -247,6 +257,23 @@ public class View{
         }
         
         WindowBuilder();
+
+        new Thread(() -> {
+
+            while(true)
+            {
+                ActionHandle.RefrechLatestConfIntoCache();
+                try
+                {
+                    Thread.sleep(1500);
+                }
+                catch(InterruptedException e)
+                {
+                    e.getStackTrace();
+                }
+            }
+            
+        }).start();
         
         //System.out.print(RWIF.ReadFile(ClientSettingPath));
     }
