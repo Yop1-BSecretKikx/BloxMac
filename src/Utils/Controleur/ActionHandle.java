@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilterWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.Files;
@@ -65,8 +66,9 @@ public class ActionHandle {
 
     //Conf BloxMac
 
-    public static Path GetCachPath = Paths.get("/Users/Shared/BloxMacConfig.txt");
-
+    public static Path GetCachPath = Paths.get("/Users/Shared/BloxMacConf/BloxMacConfig.txt");
+    public static Path BloxMacConfDirectory = Paths.get("/Users/Shared/BloxMacConf");
+    public static Path BloxmacJsonConf = Paths.get("/Users/Shared/BloxMacConf/BloxMacJsonSettings.json");
     public static String BloxMacConfTemplate = """
             Fps_Uncap:
             LightingTect:
@@ -918,18 +920,27 @@ public class ActionHandle {
                 }
             }
         }
-        /*
-LightingTect:Voxel   🔧
-GraphicsApi:Metal   🔧
-TextureLevel:2
-EnableGrass:GrassEffect_NO
-EnableGraySky:GraySky_NO
-         */
     }
 
-    public static void LoadBloxmacConfigOnStart()
+
+    public static void LoadCurrentRobloxJsonintoBloxMacJsonSettings()
     {
-        //From Config file add fflags !!!!!
-        //to do 19nov 20h17 -> 20
+        Path clientsettings = Paths.get(PathFinder.FindPathClientSetting());
+        try
+        {
+            String JsonContent = Files.readString(clientsettings);
+            Files.writeString(ActionHandle.BloxmacJsonConf, JsonContent);
+            
+        }catch(IOException e)
+        {
+            e.getStackTrace();
+        }
     }
+
+    public static void FromConfigAddFflagandSetBloxMac(Path TxtConfig,Path JsonConf) throws IOException
+    {
+        String BloxMacJsonConfContent = Files.readString(JsonConf);
+        Files.writeString(Paths.get(PathFinder.FindPathClientSetting()), BloxMacJsonConfContent);
+    }
+
 }

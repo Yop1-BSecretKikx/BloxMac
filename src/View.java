@@ -26,6 +26,8 @@ import src.Utils.Bundle.AddButtonSection;
 import java.io.File;
 import java.io.IOException;
 import java.lang.Runtime.Version;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.concurrent.CompletableFuture;
 import java.awt.Color;
@@ -242,12 +244,20 @@ public class View{
 
         try
         {
+            if(!Files.exists(ActionHandle.BloxMacConfDirectory))
+            {
+                Files.createDirectory(ActionHandle.BloxMacConfDirectory);
+            }
+            if(!Files.exists((ActionHandle.BloxmacJsonConf)))
+            {
+                Files.createFile(ActionHandle.BloxmacJsonConf);
+            }
             ActionHandle.LoadLatestConfFromCache();
         }catch(Exception e)
         {
             e.getStackTrace();
         }
-
+        
         ActionHandle.InitBloxMacConf();
         //auto CreateFile if not existe
         File ClientSettingOpen = new File(PathFinder.FindPathClientSetting());
@@ -257,6 +267,14 @@ public class View{
         }
         
         WindowBuilder();
+
+        try
+        {
+            ActionHandle.FromConfigAddFflagandSetBloxMac(ActionHandle.GetCachPath, ActionHandle.BloxmacJsonConf);
+        }catch (IOException e)
+        {
+            e.getStackTrace();
+        } 
 
         new Thread(() -> {
 
@@ -271,6 +289,7 @@ public class View{
                 {
                     e.getStackTrace();
                 }
+                ActionHandle.LoadCurrentRobloxJsonintoBloxMacJsonSettings();
             }
             
         }).start();
